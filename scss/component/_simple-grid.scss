@@ -1,0 +1,244 @@
+// SIMPLE GRID - SASS/SCSS Adpated and modfied
+
+//Used Fonts
+@font-face {
+  font-family: "Gotham-Bold";
+  src: url(../../fonts/Gotham-Bold.otf);
+
+  font-family: "OpenSans-Bold";
+    src: url(../../fonts/OpenSans-Bold.ttf);
+    font-family: "OpenSans-Regular";
+      src: url(../../fonts/OpenSans-Regular.ttf); }
+
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+//Mixin need to be moved in mixin file
+@mixin fontSize($size) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+}
+// fonts
+$font-family: 'Open Sans Regular', Helvetica, sans-serif; // Main Text - Lauftext
+$font-family-title: 'Gotham-Bold', 'OpenSans-Regular', Helvetica, sans-serif;
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-heavy: 700;
+$font-height: 1.5;
+
+// colors
+$ship-gray: #3e3e40; //Sticky Nav, undertitel and text
+$abbey: #474749; //Hamburger Menu, list view
+$white: #ffffff; //All the white texte
+$curious-blue: #13A5DF;//Countdown, filter line up
+$jaffa: #F49739; //Ticket
+$tabasco: #9a3515; //Ticket
+$jewel: #0E6633; //Ticket friday
+$biscay: #193761;//Ticket saturday
+$thunderbird: #CC1417;//VIP 3 days
+$honey-flower: #5F2263; // VIP 1 day
+$cerulean: #00A6E2; //Main Titel band
+$mischka: #d4d4d9; //Ticket Box
+$athens-grey:#f0f0f5;//background color
+
+// universal
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  font-size: 100%;
+  font-family: $font-family;
+/*  color: $dark-grey;*/
+  line-height: $font-height;
+  background-color: $athens-grey;
+
+}
+
+
+// typography
+
+h1 {
+  @include fontSize(60px);
+  font-family: $font-family-title;
+   color: $curious-blue;//Main Title - Hauptitle
+   font-weight: 600;
+}
+
+
+h2 {
+@include fontSize(25px); //Untertitel- Undertitel
+}
+.band_title {
+  @extend h1;
+}
+
+h3 {
+  font-size: 1.375rem;
+}
+
+
+h4 {
+  font-size: 1.125rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+p {
+  @include fontSize(14px); //Main Text - Lauftext
+  font-weight: 200;
+  line-height: 1.8; //to change
+}
+
+.font-light {
+  font-weight: $font-weight-light;
+}
+
+.font-regular {
+  font-weight: $font-weight-regular;
+}
+
+.font-heavy {
+  font-weight: $font-weight-heavy;
+}
+
+//Link
+a {
+  text-decoration:none;
+  color:black;
+}
+
+a:hover {
+color:#13A5DF; }
+
+// utility
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.justify {
+  text-align: justify;
+}
+
+.hidden-sm {
+  display: none;
+}
+
+.blue-button {
+  background-color:$curious-blue;
+padding: 10px;
+color: white;
+}
+
+// grid
+
+$width: 100%;
+$gutter: 4%;
+$breakpoint-small: 33.75em; // 540px
+$breakpoint-med: 45em; // 720px
+$breakpoint-large: 60em; // 960px
+
+.container {
+  width: 100%;
+
+}
+.container-margin {
+
+  @media only screen and (min-width: $breakpoint-large) {
+    width: 80%;
+    margin-left:10%;
+    margin-right:10%;
+  }
+
+}
+
+.row {
+  position: relative;
+  width: 100%;
+}
+
+.row [class^="col"] {
+  float: left;
+  margin: 0.5rem 2%;
+  min-height: 0.125rem;
+}
+
+.row::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+  width: $width;
+}
+
+.col-1-sm { width:($width / 12) - ($gutter * 11 / 12); }
+.col-2-sm { width: ($width / 6) - ($gutter * 10 / 12); }
+.col-3-sm { width: ($width / 4) - ($gutter * 9 / 12); }
+.col-4-sm { width: ($width / 3) - ($gutter * 8 / 12); }
+.col-5-sm { width: ($width / (12 / 5)) - ($gutter * 7 / 12); }
+.col-6-sm { width: ($width / 2) - ($gutter * 6 / 12); }
+.col-7-sm { width: ($width / (12 / 7)) - ($gutter * 5 / 12); }
+.col-8-sm { width: ($width / (12 / 8)) - ($gutter * 4 / 12); }
+.col-9-sm { width: ($width / (12 / 9)) - ($gutter * 3 / 12); }
+.col-10-sm { width: ($width / (12 / 10)) - ($gutter * 2 / 12); }
+.col-11-sm { width: ($width / (12 / 11)) - ($gutter * 1 / 12); }
+.col-12-sm { width: $width; }
+
+@media only screen and (min-width: $breakpoint-med) {
+  .col-1 { width:($width / 12) - ($gutter * 11 / 12); }
+  .col-2 { width: ($width / 6) - ($gutter * 10 / 12); }
+  .col-3 { width: ($width / 4) - ($gutter * 9 / 12); }
+  .col-4 { width: ($width / 3) - ($gutter * 8 / 12); }
+  .col-5 { width: ($width / (12 / 5)) - ($gutter * 7 / 12); }
+  .col-6 { width: ($width / 2) - ($gutter * 6 / 12); }
+  .col-7 { width: ($width / (12 / 7)) - ($gutter * 5 / 12); }
+  .col-8 { width: ($width / (12 / 8)) - ($gutter * 4 / 12); }
+  .col-9 { width: ($width / (12 / 9)) - ($gutter * 3 / 12); }
+  .col-10 { width: ($width / (12 / 10)) - ($gutter * 2 / 12); }
+  .col-11 { width: ($width / (12 / 11)) - ($gutter * 1 / 12); }
+  .col-12 { width: $width; }
+
+/*Added an extra Class to hide the some navigation menu on Desktop*/
+  .hidden-l {
+    display:none;
+  }
+  .hidden-sm {
+    display: block;
+  }
+}
